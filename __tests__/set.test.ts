@@ -1,3 +1,4 @@
+import { idText } from 'typescript';
 import set from './../src/index';
 
 let data = {} as any;
@@ -28,3 +29,10 @@ it('test with object reference', () => {
   expect(data.a.b.c).toEqual(['Hello', 'World']);
   expect(sameReference === data).toEqual(true);
 });
+
+it('test for prototype pollution', () => {
+  set(data, '__proto__.polluted', 'Yes! Its Polluted');
+  expect(data.polluted).toEqual(undefined);
+  expect(data.polluted).not.toEqual('Yes! Its Polluted');
+  expect(({} as any).polluted).toEqual(undefined);
+})
