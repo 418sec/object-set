@@ -1,4 +1,3 @@
-import { idText } from 'typescript';
 import set from './../src/index';
 
 let data = {} as any;
